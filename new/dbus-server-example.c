@@ -5,7 +5,7 @@ typedef int bool;
 #define true 1
 #define false 0
 
-reply_to_method_call(DBusMessage* msg, DBusConnection* conn)
+void reply_to_method_call(DBusMessage* msg, DBusConnection* conn)
 {
    DBusMessage* reply;
    DBusMessageIter args;
@@ -50,8 +50,8 @@ reply_to_method_call(DBusMessage* msg, DBusConnection* conn)
 }
  
  
-static void
-reply_to_Introspect(DBusMessage* msg, DBusConnection* conn)
+
+void reply_to_Introspect(DBusMessage* msg, DBusConnection* conn)
 {
     /*反馈的消息*/
     char *xml = "http://www.freedesktop.org/standards/dbus/1.0/introspect.dtd\">\n"
