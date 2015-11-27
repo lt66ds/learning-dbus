@@ -1,0 +1,60 @@
+    #include <stdio.h>
+
+    #include <dbus/dbus.h>
+
+    int main()
+
+    {
+
+    DBusConnection *connection;
+
+    DBusError error;
+
+     
+    int ret;
+    dbus_error_init(&error);
+
+    connection = dbus_bus_get(DBUS_BUS_STARTER, &error); 
+
+    ret = dbus_bus_request_name(connection, "test.singal.dest", DBUS_NAME_FLAG_REPLACE_EXISTING, &err);
+if (dbus_error_is_set(&err))
+{
+fprintf(stderr, "Name Error%s\n", err.message);dbus_error_free(&err);
+}
+    
+
+
+
+
+
+
+
+/* DBUS_BUS_STARTER is
+
+    
+    the bus that started us */
+
+    /* Do something here to make sure that the application was successfully
+
+    started by DBus
+
+    * Example could be something like
+    */
+    FILE *tmp;
+
+    tmp = fopen("/tmp/share-linux-service.result", "w");
+
+    fprintf(tmp,"share-linux service was started successfully");
+
+    fclose(tmp);
+     
+    printf("share-linux running\n");
+    /* After that you have the service up, so you can do whetever you like */
+
+    dbus_connection_unref(connection);
+
+     
+
+    return 0;
+
+    }
