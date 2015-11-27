@@ -9,17 +9,23 @@ int reply_to_hello_method(DBusConnection *connection,DBusMessage *msg)
 	DBusMessage *reMsg;
 	dbus_bool_t flag=dbus_message_iter_init(msg,&iter);
 	int current_type;
-	char *buffer=malloc(sizeof(char)*50);
+	char *buffer;
 	reMsg=dbus_message_new_method_return(msg);
 	
 	current_type=dbus_message_iter_get_arg_type(&iter);
-		if (current_type==DBUS_TYPE_STRING)
+	if (current_type==DBUS_TYPE_STRING)
 		{
 			dbus_message_iter_get_basic(&iter,&buffer);
 			if (buffer!=NULL)
 				printf("received Msg: %s\n",buffer);
 		}
-		
+		dbus_message_iter_init_append(reMsg,&reIter);
+		printf("ready to send message: %s\n",buffer);
+		buffer[0]='r';
+		buffer[1]='e';
+		buffer[2]='p';
+		buffer[3]='l';
+		buffer[4]='y';
 		dbus_message_iter_append_basic(&reIter,DBUS_TYPE_STRING,&buffer);
 		dbus_connection_send(connection,reMsg,0);	
 		dbus_connection_flush(connection);
