@@ -47,7 +47,7 @@ void listen_signal()
         msg = dbus_connection_pop_message (connection);
         if(msg == NULL)
   	{   printf("Sleeping\n");
-            sleep(1);
+            sleep(10);
             continue;
         }
 	printf("received something\n");
