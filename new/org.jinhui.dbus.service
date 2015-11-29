@@ -1,0 +1,3 @@
+[D-BUS Service]
+Name=org.jinhui.dbus
+Exec=/home/jinhuili/working/learning-dbus/new/dbus-listen-method.bin
